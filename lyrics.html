@@ -1,84 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- FONT EXACT LIKE SCREENSHOT -->
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+  <!-- FONT (same handwritten style) -->
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+
+  <title>Sajjad</title>
 
   <style>
     body {
       margin: 0;
       height: 100vh;
-      background: radial-gradient(circle at top, #2a001f, #000);
+      background: radial-gradient(circle at top, #2b0015, #000);
       display: flex;
       justify-content: center;
       align-items: center;
-      color: white;
       overflow: hidden;
-      text-align: center;
-      font-family: 'Caveat', cursive;
+      color: white;
     }
 
     #container {
+      text-align: center;
       width: 100%;
       padding: 20px;
     }
 
     #text {
-      font-size: 120px;      /* 🔥 BIG TEXT */
-      line-height: 1.2;
-      letter-spacing: 1px;
+      font-family: 'Patrick Hand', cursive;
+      font-size: 42px;      /* 👈 CHANGE SIZE HERE */
+      line-height: 1.4;
+      white-space: pre-line;
     }
 
     #gif {
       display: none;
-      width: 260px;
-      margin-top: 30px;
+      width: 160px;
+      margin-top: 20px;
     }
   </style>
 </head>
-<body>
 
+<body>
   <div id="container">
     <div id="text"></div>
-    <img id="gif" src="teddy.gif" alt="hug">
+    <img id="gif" src="teddy.gif" />
+    <audio id="audio" src="song.mp3"></audio>
   </div>
-
-  <audio id="audio" src="song.mp3"></audio>
 
   <script>
     const textDiv = document.getElementById("text");
     const gif = document.getElementById("gif");
     const audio = document.getElementById("audio");
 
-    // WORD BY WORD LYRICS (EDIT ONLY THIS PART LATER)
-    const lyrics = [
-      "Zara", "paas",
-      "tu", "aa", "mere",
-      "seene", "se", "lag", "ja"
+    // 🔥 FULL LYRICS — LINE BY LINE
+    const lines = [
+      "Dheere se choo ja mujhe",
+      "Kho jaaun tere pyaar mein",
+      "Baahon mein bhar le mujhe",
+      "Zara paas tu aa mere"
     ];
 
-    let index = 0;
+    let lineIndex = 0;
+    let wordIndex = 0;
+    let words = [];
 
-    // start when page opens (because user already clicked "show me")
     window.onload = () => {
       audio.play();
-      showWords();
+      startLine();
     };
 
-    function showWords() {
-      if (index < lyrics.length) {
-        textDiv.innerText = lyrics[index];
-        index++;
-        setTimeout(showWords, 650); // ⏱ timing between words
+    function startLine() {
+      if (lineIndex >= lines.length) {
+        gif.style.display = "block"; // teddy at end
+        return;
+      }
+
+      words = lines[lineIndex].split(" ");
+      wordIndex = 0;
+      textDiv.innerText = "";
+      typeWord();
+    }
+
+    function typeWord() {
+      if (wordIndex < words.length) {
+        textDiv.innerText += (wordIndex === 0 ? "" : " ") + words[wordIndex];
+        wordIndex++;
+        setTimeout(typeWord, 400); // 👈 WORD SPEED
       } else {
-        textDiv.innerText = "";
-        gif.style.display = "block"; // teddy appears on ohhhh part
+        lineIndex++;
+        setTimeout(startLine, 1400); // 👈 GAP BETWEEN LINES
       }
     }
   </script>
-
 </body>
 </html>
