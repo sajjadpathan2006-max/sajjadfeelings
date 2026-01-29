@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Private</title>
+  <style>
+    body {
+      background: black;
+      color: white;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: cursive;
+      text-align: center;
+    }
+    input {
+      padding: 12px;
+      border-radius: 20px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      text-align: center;
+    }
+    button {
+      margin-top: 15px;
+      padding: 12px 30px;
+      border-radius: 25px;
+      border: none;
+      background: #e91e63;
+      color: white;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <div>
+    <h2>🔒 This is private</h2>
+    <p>Enter password to continue</p>
+    <input type="password" id="password" placeholder="Password"><br>
+    <button onclick="checkPassword()">Enter ❤️</button>
+    <p id="error" style="color:red;"></p>
+  </div>
+
+  <script>
+    function checkPassword() {
+      const correctPassword = "sajjad123"; // CHANGE THIS
+      const entered = document.getElementById("password").value;
+
+      if (entered === correctPassword) {
+        window.location.href = "page2.html";
+      } else {
+        document.getElementById("error").innerText = "Wrong password 😢";
+      }
+    }
+  </script>
+
+</body>
+</html>
