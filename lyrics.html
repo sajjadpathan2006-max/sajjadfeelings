@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: black;
+      color: white;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-family: cursive;
+    }
+    #teddy {
+      display: none;
+      width: 160px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div id="text"></div>
+    <img id="teddy" src="teddy.gif">
+    <audio id="song" src="song.mp3"></audio>
+  </div>
+
+  <script>
+    const lines = [
+      "Zara paas tu aa mere",
+      "Dheere se choo ja mujhe",
+      "Kho jaaun tere pyaar mein",
+      "Baahon mein bhar le mujhe"
+    ];
+
+    let lineIndex = 0;
+    let wordIndex = 0;
+    let words = [];
+
+    const text = document.getElementById("text");
+    const teddy = document.getElementById("teddy");
+    const song = document.getElementById("song");
+
+    song.play();
+
+    function type() {
+      if (lineIndex >= lines.length) {
+        teddy.style.display = "block";
+        return;
+      }
+
+      if (wordIndex === 0) {
+        text.innerHTML = "";
+        words = lines[lineIndex].split(" ");
+      }
+
+      if (wordIndex < words.length) {
+        text.innerHTML += words[wordIndex] + " ";
+        wordIndex++;
+        setTimeout(type, 350);
+      } else {
+        wordIndex = 0;
+        lineIndex++;
+        setTimeout(type, 1200); // pause before next “page”
+      }
+    }
+
+    type();
+  </script>
+</body>
+</html>
