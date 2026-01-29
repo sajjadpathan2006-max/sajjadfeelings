@@ -1,100 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- Google Font (same style as screenshot) -->
-<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <!-- FONT EXACT LIKE SCREENSHOT -->
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
 
-<title>Lyrics</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(circle at top, #2a001f, #000);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      overflow: hidden;
+      text-align: center;
+      font-family: 'Caveat', cursive;
+    }
 
-<style>
-body {
-  margin: 0;
-  height: 100vh;
-  background: black;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-family: 'Patrick Hand', cursive;
-}
+    #container {
+      width: 100%;
+      padding: 20px;
+    }
 
-#box {
-  width: 100%;
-  padding: 20px;
-}
+    #text {
+      font-size: 120px;      /* 🔥 BIG TEXT */
+      line-height: 1.2;
+      letter-spacing: 1px;
+    }
 
-#text {
-  font-size: 72px;   /* 🔥 3x bigger */
-  line-height: 1.3;
-  min-height: 120px;
-}
-
-#gif {
-  display: none;
-  width: 220px;
-  margin-top: 30px;
-}
-
-/* Mobile safety */
-@media (max-width: 480px) {
-  #text {
-    font-size: 56px;
-  }
-}
-</style>
+    #gif {
+      display: none;
+      width: 260px;
+      margin-top: 30px;
+    }
+  </style>
 </head>
-
 <body>
 
-<div id="box">
-  <div id="text"></div>
-  <img id="gif" src="teddy.gif">
-</div>
+  <div id="container">
+    <div id="text"></div>
+    <img id="gif" src="teddy.gif" alt="hug">
+  </div>
 
-<audio id="song" src="song.mp3"></audio>
+  <audio id="audio" src="song.mp3"></audio>
 
-<script>
-const textEl = document.getElementById("text");
-const gif = document.getElementById("gif");
-const song = document.getElementById("song");
+  <script>
+    const textDiv = document.getElementById("text");
+    const gif = document.getElementById("gif");
+    const audio = document.getElementById("audio");
 
-const lines = [
-  "Zara paas tu aa mere",
-  "Dheere se choo ja mujhe",
-  "Kho jaaun tere pyaar mein",
-  "Baahon mein bhar le mujhe"
-];
+    // WORD BY WORD LYRICS (EDIT ONLY THIS PART LATER)
+    const lyrics = [
+      "Zara", "paas",
+      "tu", "aa", "mere",
+      "seene", "se", "lag", "ja"
+    ];
 
-let lineIndex = 0;
-let charIndex = 0;
+    let index = 0;
 
-song.play(); // starts immediately after Show Me click
+    // start when page opens (because user already clicked "show me")
+    window.onload = () => {
+      audio.play();
+      showWords();
+    };
 
-function typeLine() {
-  if (charIndex < lines[lineIndex].length) {
-    textEl.textContent += lines[lineIndex][charIndex];
-    charIndex++;
-    setTimeout(typeLine, 90); // word-by-word feel
-  } else {
-    setTimeout(() => {
-      charIndex = 0;
-      lineIndex++;
-      textEl.textContent = "";
-
-      if (lineIndex < lines.length) {
-        typeLine();
+    function showWords() {
+      if (index < lyrics.length) {
+        textDiv.innerText = lyrics[index];
+        index++;
+        setTimeout(showWords, 650); // ⏱ timing between words
       } else {
-        gif.style.display = "block"; // teddy at ohhhh part
+        textDiv.innerText = "";
+        gif.style.display = "block"; // teddy appears on ohhhh part
       }
-    }, 1400);
-  }
-}
-
-typeLine();
-</script>
+    }
+  </script>
 
 </body>
 </html>
