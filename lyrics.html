@@ -29,17 +29,15 @@
 
     #text {
       font-family: 'Patrick Hand', cursive;
-      font-size: 75px;      /* 👈 CHANGE SIZE HERE */
+      font-size: 75px;
       line-height: 1;
       white-space: pre-line;
     }
 
     #gif {
-      #gif {
-  display: none;
-  width: 300px;        /* 👈 BIG GIF */
-  margin: 0 auto;
-      }
+      display: none;
+      width: 300px;       /* ONLY CHANGE: bigger gif */
+      margin: 0 auto;
     }
   </style>
 </head>
@@ -56,13 +54,12 @@
     const gif = document.getElementById("gif");
     const audio = document.getElementById("audio");
 
-    // 🔥 FULL LYRICS — LINE BY LINE
     const lines = [
-  "Zara paas tu aa mere",
-  "Dheere se choo ja mujhe",
-  "Kho jaaun tere pyaar mein",
-  "Baahon mein bhar le mujhe"
-];
+      "Zara paas tu aa mere",
+      "Dheere se choo ja mujhe",
+      "Kho jaaun tere pyaar mein",
+      "Baahon mein bhar le mujhe"
+    ];
 
     let lineIndex = 0;
     let wordIndex = 0;
@@ -75,9 +72,9 @@
 
     function startLine() {
       if (lineIndex >= lines.length) {
-  textDiv.innerText = "";      // 👈 remove last line
-  gif.style.display = "block"; // 👈 show only gif
-  return;
+        textDiv.innerText = "";   // ONLY CHANGE: remove last line
+        gif.style.display = "block";
+        return;
       }
 
       words = lines[lineIndex].split(" ");
@@ -90,10 +87,10 @@
       if (wordIndex < words.length) {
         textDiv.innerText += (wordIndex === 0 ? "" : " ") + words[wordIndex];
         wordIndex++;
-        setTimeout(typeWord, 500); // 👈 WORD SPEED
+        setTimeout(typeWord, 500);
       } else {
         lineIndex++;
-        setTimeout(startLine, 1500); // 👈 GAP BETWEEN LINES
+        setTimeout(startLine, 1500);
       }
     }
   </script>
