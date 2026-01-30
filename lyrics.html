@@ -87,10 +87,10 @@
       if (wordIndex < words.length) {
         textDiv.innerText += (wordIndex === 0 ? "" : " ") + words[wordIndex];
         wordIndex++;
-        setTimeout(typeWord, 800); // 👈 WORD SPEED
+        setTimeout(typeWord, 500); // 👈 WORD SPEED
       } else {
         lineIndex++;
-        setTimeout(startLine, 1600); // 👈 GAP BETWEEN LINES
+        setTimeout(startLine, 1500); // 👈 GAP BETWEEN LINES
       }
     }
   </script>
