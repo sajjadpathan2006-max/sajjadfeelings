@@ -35,9 +35,11 @@
     }
 
     #gif {
-      display: none;
-      width: 160px;
-      margin-top: 20px;
+      #gif {
+  display: none;
+  width: 300px;        /* 👈 BIG GIF */
+  margin: 0 auto;
+      }
     }
   </style>
 </head>
@@ -73,8 +75,9 @@
 
     function startLine() {
       if (lineIndex >= lines.length) {
-        gif.style.display = "block"; // teddy at end
-        return;
+  textDiv.innerText = "";      // 👈 remove last line
+  gif.style.display = "block"; // 👈 show only gif
+  return;
       }
 
       words = lines[lineIndex].split(" ");
